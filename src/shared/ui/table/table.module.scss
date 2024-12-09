@@ -7,9 +7,7 @@
     border-bottom: 2px solid transparent;
 
     &Cell {
-      @include body-l-semi-bold;
-
-      color: $gray-green-color;
+      color: var(--black-color);
       text-align: left;
       vertical-align: top;
       height: 3em;
@@ -21,8 +19,8 @@
     width: 100%;
 
     &Row {
-      border-top: 2px solid $gray-main-color;
-      border-bottom: 2px solid $gray-main-color;
+      border-top: 2px solid var(--gray-color);
+      border-bottom: 2px solid var(--gray-color);
 
       &Empty {
         border-color: transparent;
@@ -30,8 +28,6 @@
     }
 
     &Cell {
-      @include body-l;
-
       padding: 16px 8px;
     }
 

@@ -23,11 +23,12 @@
     "baseUrl": "src",
     "paths": {
       "app/*": ["app/*"],
+      "entities/*": ["entities/*"],
       "pages/*": ["pages/*"],
       "widgets/*": ["widgets/*"],
       "shared/*": ["shared/*"]
     }
   },
-  "include": ["vite.config.ts", ".eslintrc.cjs", "src", "main.tsx"],
+  "include": [".eslintrc.cjs", "src", "main.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
