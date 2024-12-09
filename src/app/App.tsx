@@ -1,13 +1,15 @@
 import { Suspense } from 'react';
 import { AppRouter } from './providers/router';
+import { Header } from 'widgets/header';
 
 function App() {
   return (
-    <div className="app">
+    <div>
       <Suspense fallback="">
-        <div className="content">
+        <Header />
+        <main className="content">
           <AppRouter />
-        </div>
+        </main>
       </Suspense>
     </div>
   );

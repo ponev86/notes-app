@@ -1,20 +1,12 @@
-import clsx from 'clsx';
-
 import { Loader } from 'shared/ui/loader/loader';
 
 import type { FC } from 'react';
 
 import styles from './page-loader.module.scss';
 
-interface PageLoaderProps {
-  className?: string;
-}
-
-export const PageLoader: FC<PageLoaderProps> = (props) => {
-  const { className } = props;
-
+export const PageLoader: FC = () => {
   return (
-    <div className={clsx(styles.pageLoader, className)}>
+    <div className={styles.pageLoader}>
       <Loader />
     </div>
   );

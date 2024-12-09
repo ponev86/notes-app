@@ -1,21 +1,24 @@
 @import 'reset';
-@import 'variables/global';
+@import 'variables';
 
 body {
   font: var(--font-m);
-  color: var(--primary-color);
-}
-
-.app {
-  min-height: 100vh;
-  background-color: var(--bg-color);
+  color: var(--black-color);
 }
 
 .content {
   display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .page-wrapper {
   flex-grow: 1;
   padding: 20px;
+}
+
+h1 {
+  font: var(--font-l);
+  font-weight: normal;
+  color: var(--black-color);
 }
