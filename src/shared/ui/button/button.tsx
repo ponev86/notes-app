@@ -5,22 +5,14 @@ import type { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 import styles from './button.module.scss';
 
 export enum ButtonTheme {
-  CLEAR = 'clear',
-  CLEAR_INVERTED = 'clearInverted',
-  OUTLINE = 'outline',
-  OUTLINE_RED = 'outlineRed',
-  BACKGROUND = 'background',
-  BACKGROUND_INVERTED = 'backgroundInverted',
-
-  // Primary = 'primary',
-  // Secondary = 'secondary',
-  // Clear = 'clear',
+  Primary = 'primary',
+  Secondary = 'secondary',
+  Clear = 'clear',
 }
 
 export enum ButtonSize {
-  M = 'size_m',
-  L = 'size_l',
-  XL = 'size_xl',
+  Medium = 'medium',
+  Large = 'large',
 }
 
 export interface ButtonProps
@@ -37,8 +29,8 @@ export const Button: FC<ButtonProps> = (props) => {
     className,
     square,
     disabled,
-    theme = ButtonTheme.CLEAR,
-    size = ButtonSize.M,
+    theme = ButtonTheme.Primary,
+    size = ButtonSize.Medium,
     children,
     ...other
   } = props;

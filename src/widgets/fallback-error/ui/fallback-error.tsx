@@ -3,8 +3,9 @@ import { Button } from 'shared/ui/button/button';
 import type { FallbackProps } from 'react-error-boundary';
 
 import styles from './fallback-error.module.scss';
+import { FC, memo } from 'react';
 
-export const FallbackError: React.FC<FallbackProps> = (props) => {
+export const FallbackError: FC<FallbackProps> = memo((props) => {
   const { error, resetErrorBoundary } = props;
 
   return (
@@ -13,4 +14,4 @@ export const FallbackError: React.FC<FallbackProps> = (props) => {
       <Button onClick={resetErrorBoundary}>Попробуйте еще раз</Button>
     </div>
   );
-};
+});

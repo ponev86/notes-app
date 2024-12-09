@@ -6,15 +6,23 @@
   --font-size-l: 24px;
   --font-line-l: 32px;
   --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
-  --font-size-xl: 32px;
-  --font-line-xl: 48px;
-  --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
   --black-color: #2d2d2d;
   --white-color: #ffffff;
 
   --header-height: 50px;
   --header-bg-color: #17c182;
+
+  --primary-button-bg-color: #0e6f4b;
+  --secondary-button-border-color: #0e6f4b;
+  --primary-button-color: #ffffff;
+
+  --secondary-button-bg-color: transparent;
+  --secondary-button-border-color: #0e6f4b;
+  --secondary-button-color: #0e6f4b;
+
+  --clear-button-bg-color: transparent;
+  --clear-button-color: #2d2d2d;
 
   --modal-z-index: 10;
   --overlay-color: rgb(0 0 0 / 60%);
