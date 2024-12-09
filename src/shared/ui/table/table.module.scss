@@ -1,0 +1,42 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &Head {
+    width: 100%;
+    border-bottom: 2px solid transparent;
+
+    &Cell {
+      @include body-l-semi-bold;
+
+      color: $gray-green-color;
+      text-align: left;
+      vertical-align: top;
+      height: 3em;
+      padding: 0 8px;
+    }
+  }
+
+  &Body {
+    width: 100%;
+
+    &Row {
+      border-top: 2px solid $gray-main-color;
+      border-bottom: 2px solid $gray-main-color;
+
+      &Empty {
+        border-color: transparent;
+      }
+    }
+
+    &Cell {
+      @include body-l;
+
+      padding: 16px 8px;
+    }
+
+    &Empty {
+      width: 100%;
+    }
+  }
+}
