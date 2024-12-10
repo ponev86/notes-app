@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import CrossIcon from '../../assets/icons/cross-icon.svg';
+import CrossIcon from '../../assets/icons/cross-icon.svg?react';
 
 import styles from './modal.module.scss';
 

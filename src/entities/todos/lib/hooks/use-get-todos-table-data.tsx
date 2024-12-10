@@ -7,9 +7,18 @@ import { Todo } from '../../model/types/todos-schema';
 import { ActiveLine } from 'shared/ui/active-line/active-line';
 import { useAppDispatch } from 'shared/hooks/use-app-dispatch';
 import { todosActions } from 'entities/todos/model/slice/todos-slice';
+import useConfirmationModal from 'shared/hooks/use-confirmation-modal';
+import { deleteTodoById, getTodosIsPending } from 'entities/todos';
+import { useAppSelector } from 'shared/hooks/use-app-selector';
 
 export function useGetTodosTableData(todos?: Todo[]) {
   const dispatch = useAppDispatch();
+
+  const isPending = useAppSelector(getTodosIsPending);
+
+  const { isModalOpened, onCancel, onConfirm, onOpenModal } =
+    useConfirmationModal();
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -30,9 +39,13 @@ export function useGetTodosTableData(todos?: Todo[]) {
     console.log(todo);
   }, []);
 
-  const onDeleteTodo = useCallback((id: number) => {
-    console.log(id);
-  }, []);
+  const onDeleteHandle = async (id: number): Promise<void> => {
+    const isDelete = await onOpenModal();
+
+    if (isDelete) {
+      dispatch(deleteTodoById(id));
+    }
+  };
 
   const tableColumns = useMemo(
     () => [
@@ -80,6 +93,7 @@ export function useGetTodosTableData(todos?: Todo[]) {
             type="checkbox"
             checked={todoItem.completed}
             onChange={() => onChangeCompleteTodo(todoItem.id)}
+            disabled={isPending}
           />
         </ActiveLine>
       ),
@@ -88,6 +102,7 @@ export function useGetTodosTableData(todos?: Todo[]) {
           <Button
             onClick={() => onEditTodo(todoItem)}
             theme={ButtonTheme.Secondary}
+            disabled={isPending}
           >
             Редактировать
           </Button>
@@ -96,16 +111,17 @@ export function useGetTodosTableData(todos?: Todo[]) {
       delete: (
         <ActiveLine isActive={todoItem.completed}>
           <Button
-            onClick={() => onDeleteTodo(todoItem.id)}
+            onClick={() => onDeleteHandle(todoItem.id)}
             theme={ButtonTheme.Secondary}
             className={styles.removeButton}
+            disabled={isPending}
           >
             Удалить
           </Button>
         </ActiveLine>
       ),
     }));
-  }, [showCompleted, todos]);
+  }, [showCompleted, todos, isPending]);
 
   useEffect(() => {
     navigate(showCompleted ? '?completed=true' : '?', { replace: true });
@@ -114,5 +130,8 @@ export function useGetTodosTableData(todos?: Todo[]) {
   return {
     tableColumns,
     dataSource,
+    isModalOpened,
+    onCancel,
+    onConfirm,
   };
 }

@@ -3,8 +3,10 @@ import {
   getTodosData,
   getTodosError,
   getTodosIsLoading,
+  getTodosViewRemoveModal,
   Todos,
 } from 'entities/todos';
+
 import { useEffect } from 'react';
 import { useAppDispatch } from 'shared/hooks/use-app-dispatch';
 import { useAppSelector } from 'shared/hooks/use-app-selector';
@@ -14,6 +16,7 @@ const MainPage = () => {
   const isLoading = useAppSelector(getTodosIsLoading);
   const error = useAppSelector(getTodosError);
   const todos = useAppSelector(getTodosData);
+  const isShowRemoveModal = useAppSelector(getTodosViewRemoveModal);
 
   useEffect(() => {
     dispatch(fetchTodos());
@@ -23,7 +26,11 @@ const MainPage = () => {
     <>
       <h1>Список заметок</h1>
       {error && <p>Ошибка: {error}</p>}
-      <Todos isLoading={isLoading} todos={todos} />
+      <Todos
+        isLoading={isLoading}
+        todos={todos}
+        isShowRemoveModal={isShowRemoveModal}
+      />
     </>
   );
 };

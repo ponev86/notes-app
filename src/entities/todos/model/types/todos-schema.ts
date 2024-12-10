@@ -6,6 +6,8 @@ export interface Todo {
 
 export interface TodosSchema {
   isLoading: boolean;
+  isPending: boolean;
+  isShowRemoveModal: boolean;
   error?: string;
   data?: Todo[];
 }

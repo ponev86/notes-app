@@ -6,6 +6,8 @@ import { fetchTodos } from '../services/fetch-todos';
 
 const initialState: TodosSchema = {
   isLoading: false,
+  isPending: false,
+  isShowRemoveModal: false,
 };
 
 export const todosSlice = createSlice({
@@ -18,6 +20,18 @@ export const todosSlice = createSlice({
           ? { ...item, completed: !item.completed }
           : item
       );
+    },
+    showRemoveModal: (state) => {
+      state.isShowRemoveModal = true;
+    },
+    hideRemoveModal: (state) => {
+      state.isShowRemoveModal = false;
+    },
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      state.data = state.data?.filter((item) => item.id !== action.payload);
+    },
+    setIsPending: (state, action: PayloadAction<boolean>) => {
+      state.isPending = action.payload;
     },
   },
   extraReducers: (builder) => {

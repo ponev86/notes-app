@@ -1,5 +1,7 @@
 .overlay {
-  @include flex-center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   position: fixed;
   top: 0;
@@ -8,32 +10,34 @@
   max-width: 100%;
   height: 100vh;
   background: transparent;
-  transition-duration: $transition-duration;
+  transition-duration: 0.2s;
   z-index: 5;
 
   &Active {
-    background: $black-semi-transparent-color;
+    background: var(--overlay-color);
   }
 }
 
 .modalContainer {
-  @include screenD {
+  @media (min-width: 1018px) {
     overflow: hidden;
     border-radius: 25px;
   }
 
-  @include screenMT {
-    @include flex-center;
+  @media (max-width: 1017px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 .modal {
-  background-color: $white-color;
-  transition-duration: $transition-duration;
+  background-color: var(--white-color);
+  transition-duration: 0.2s;
   width: 430px;
   overscroll-behavior: none;
 
-  @include screenD {
+  @media (min-width: 1018px) {
     opacity: 0;
     padding: 32px;
     border-radius: 25px;
@@ -44,7 +48,7 @@
     }
   }
 
-  @include screenMT {
+  @media (max-width: 1017px) {
     max-height: 100%;
     width: 100%;
     position: fixed;
@@ -63,5 +67,9 @@
   position: absolute;
   right: 16px;
   top: 16px;
-  color: $white-aluminum-color;
+  color: var(--close-button-color);
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
 }
