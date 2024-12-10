@@ -4,14 +4,13 @@
 
   &Head {
     width: 100%;
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid var(--gray-color);
 
     &Cell {
       color: var(--black-color);
       text-align: left;
       vertical-align: top;
-      height: 3em;
-      padding: 0 8px;
+      padding: 5px;
     }
   }
 
@@ -19,16 +18,16 @@
     width: 100%;
 
     &Row {
-      border-top: 2px solid var(--gray-color);
-      border-bottom: 2px solid var(--gray-color);
+      border-bottom: 1px solid var(--gray-color);
+      position: relative;
 
       &Empty {
-        border-color: transparent;
+        border-bottom: 1px solid transparent;
       }
     }
 
     &Cell {
-      padding: 16px 8px;
+      padding: 5px;
     }
 
     &Empty {

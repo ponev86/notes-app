@@ -1,4 +1,4 @@
-import { Children, FC } from 'react';
+import { Children, FC, ReactNode } from 'react';
 
 import { getCellData } from './table.utils';
 
@@ -6,12 +6,13 @@ import styles from './table.module.scss';
 import { hasValue } from 'shared/utils/common';
 import Skeleton from '../skeleton/skeleton';
 
-export type TDataItem = Record<string, React.ReactNode>;
+export type TDataItem = Record<string, ReactNode>;
 
 export interface IColumn {
   dataIndex: string;
-  title?: string;
+  title?: ReactNode;
   width?: number;
+  isActive?: boolean;
 }
 
 export interface ITableProps {

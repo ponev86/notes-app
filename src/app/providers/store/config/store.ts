@@ -1,13 +1,11 @@
 import { Action, configureStore, ThunkDispatch } from '@reduxjs/toolkit';
 import { StateSchema } from './state-shema';
-import { counterReducer } from 'entities/counter';
-import { notesReducer } from 'entities/notes';
+import { todosReducer } from 'entities/todos';
 
 export function createReduxStore(initialState?: StateSchema) {
   return configureStore<StateSchema>({
     reducer: {
-      counter: counterReducer,
-      notes: notesReducer,
+      todos: todosReducer,
     },
     devTools: true,
     preloadedState: initialState,

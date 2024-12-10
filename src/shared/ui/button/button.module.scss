@@ -1,17 +1,16 @@
 .button {
   cursor: pointer;
   border-radius: 12px;
+  padding: 3px 5px;
 }
 
 .primary {
-  padding: 10px 15px;
   color: var(--primary-button-color);
   background-color: var(--primary-button-bg-color);
   border: 1px solid var(--primary-button-border-color);
 }
 
 .secondary {
-  padding: 10px 15px;
   color: var(--secondary-button-color);
   background-color: var(--secondary-button-bg-color);
   border: 1px solid var(--secondary-button-border-color);

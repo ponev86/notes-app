@@ -18,9 +18,12 @@
   --secondary-button-border-color: #0e6f4b;
   --primary-button-color: #ffffff;
 
-  --secondary-button-bg-color: transparent;
+  --secondary-button-bg-color: var(--white-color);
   --secondary-button-border-color: #0e6f4b;
   --secondary-button-color: #0e6f4b;
+
+  --completed-active-color: #17c182;
+  --line-active-bg-color: #bcfcb7;
 
   --clear-button-bg-color: transparent;
   --clear-button-color: #2d2d2d;

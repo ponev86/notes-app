@@ -1,9 +1,7 @@
-import { CounterSchema } from 'entities/counter';
-import { NotesSchema } from 'entities/notes';
+import { TodosSchema } from 'entities/todos';
 
 export interface StateSchema {
-  counter: CounterSchema;
-  notes: NotesSchema;
+  todos: TodosSchema;
 }
 
 export interface ThunkConfig<T = string> {
