@@ -13,7 +13,7 @@ interface TodosProps {
 }
 
 export const Todos: FC<TodosProps> = (props) => {
-  const { isLoading, todos, isShowRemoveModal } = props;
+  const { isLoading, todos } = props;
 
   const { dataSource, tableColumns, isModalOpened, onCancel, onConfirm } =
     useGetTodosTableData(todos);
