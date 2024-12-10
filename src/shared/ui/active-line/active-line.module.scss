@@ -1,4 +1,7 @@
 .line {
+  display: flex;
+  align-items: center;
+
   &Active {
     &::before {
       content: '';

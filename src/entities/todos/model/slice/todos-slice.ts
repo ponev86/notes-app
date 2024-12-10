@@ -11,7 +11,15 @@ const initialState: TodosSchema = {
 export const todosSlice = createSlice({
   name: 'todos',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleCompleted: (state, action: PayloadAction<number>) => {
+      state.data = state.data?.map((item) =>
+        item.id === action.payload
+          ? { ...item, completed: !item.completed }
+          : item
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, (state) => {

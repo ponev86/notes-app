@@ -5,8 +5,11 @@ import { Button, ButtonTheme } from 'shared/ui/button/button';
 import styles from '../../ui/todos.module.scss';
 import { Todo } from '../../model/types/todos-schema';
 import { ActiveLine } from 'shared/ui/active-line/active-line';
+import { useAppDispatch } from 'shared/hooks/use-app-dispatch';
+import { todosActions } from 'entities/todos/model/slice/todos-slice';
 
 export function useGetTodosTableData(todos?: Todo[]) {
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,6 +20,10 @@ export function useGetTodosTableData(todos?: Todo[]) {
 
   const onToggleComplete = useCallback(() => {
     setShowCompleted((prev) => !prev);
+  }, []);
+
+  const onChangeCompleteTodo = useCallback((id: number) => {
+    dispatch(todosActions.toggleCompleted(id));
   }, []);
 
   const onEditTodo = useCallback((todo: Todo) => {
@@ -69,7 +76,11 @@ export function useGetTodosTableData(todos?: Todo[]) {
       ),
       completed: (
         <ActiveLine isActive={todoItem.completed}>
-          {todoItem.completed ? 'yes' : 'no'}
+          <input
+            type="checkbox"
+            checked={todoItem.completed}
+            onChange={() => onChangeCompleteTodo(todoItem.id)}
+          />
         </ActiveLine>
       ),
       edit: (
