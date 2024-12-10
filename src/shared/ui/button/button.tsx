@@ -1,11 +1,6 @@
 import clsx from 'clsx';
 
-import {
-  memo,
-  type ButtonHTMLAttributes,
-  type FC,
-  type PropsWithChildren,
-} from 'react';
+import type { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react';
 
 import styles from './button.module.scss';
 
