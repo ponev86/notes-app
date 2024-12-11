@@ -7,9 +7,9 @@ export interface Todo {
 export interface TodosSchema {
   isLoading: boolean;
   isPending: boolean;
-  isShowRemoveModal: boolean;
+  data: Todo[];
+  todosModal: Todo | null;
   error?: string;
-  data?: Todo[];
 }
 
 export interface TodosDTO {

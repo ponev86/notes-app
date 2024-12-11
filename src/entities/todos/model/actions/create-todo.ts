@@ -1,19 +1,20 @@
 import { AppDispatch } from 'app/providers/store';
 import agent from 'shared/api/agent';
 import { todosSlice } from '../slice/todos-slice';
+import { Todo } from '../types/todos-schema';
 
-export const deleteTodoById =
-  (id: number) =>
+export const createTodo =
+  (todo: Omit<Todo, 'id'>) =>
   async (dispatch: AppDispatch): Promise<void> => {
     try {
       dispatch(todosSlice.actions.setIsPending(true));
 
-      // TODO: условие для успешного удаления добавленных вручную записей
-      if (id < 255) {
-        await agent.delete(`/todos/${id}`);
-      }
+      const { data } = await agent.post<Todo>('/todos/add', {
+        ...todo,
+        userId: 5,
+      });
 
-      dispatch(todosSlice.actions.deleteTodo(id));
+      dispatch(todosSlice.actions.addTodo(data));
     } catch (error) {
       throw error;
     } finally {

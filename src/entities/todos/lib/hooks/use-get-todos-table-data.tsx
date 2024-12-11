@@ -13,7 +13,6 @@ import { useAppSelector } from 'shared/hooks/use-app-selector';
 
 export function useGetTodosTableData(todos?: Todo[]) {
   const dispatch = useAppDispatch();
-
   const isPending = useAppSelector(getTodosIsPending);
 
   const { isModalOpened, onCancel, onConfirm, onOpenModal } =
@@ -22,8 +21,15 @@ export function useGetTodosTableData(todos?: Todo[]) {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const queryParams = new URLSearchParams(location.search);
-  const isCompletedFilterActive = queryParams.get('completed') === 'true';
+  const queryParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  );
+
+  const isCompletedFilterActive = useMemo(
+    () => queryParams.get('completed') === 'true',
+    [queryParams]
+  );
 
   const [showCompleted, setShowCompleted] = useState(isCompletedFilterActive);
 
@@ -31,55 +37,36 @@ export function useGetTodosTableData(todos?: Todo[]) {
     setShowCompleted((prev) => !prev);
   }, []);
 
-  const onChangeCompleteTodo = useCallback((id: number) => {
-    dispatch(todosActions.toggleCompleted(id));
-  }, []);
-
-  const onEditTodo = useCallback((todo: Todo) => {
-    console.log(todo);
-  }, []);
-
-  const onDeleteHandle = async (id: number): Promise<void> => {
-    const isDelete = await onOpenModal();
-
-    if (isDelete) {
-      dispatch(deleteTodoById(id));
-    }
-  };
-
-  const tableColumns = useMemo(
-    () => [
-      { title: '#ID', dataIndex: 'ordering', width: 80 },
-      { title: 'Название', dataIndex: 'title' },
-      {
-        title: (
-          <Button
-            onClick={onToggleComplete}
-            theme={ButtonTheme.Clear}
-            className={clsx(
-              styles.completedButton,
-              showCompleted && styles.completedButtonActive
-            )}
-          >
-            Выполнен
-          </Button>
-        ),
-        dataIndex: 'completed',
-        width: 150,
-      },
-      { dataIndex: 'edit', width: 150 },
-      { dataIndex: 'delete', width: 80 },
-    ],
-    [onToggleComplete, showCompleted]
+  const onChangeCompleteTodo = useCallback(
+    (id: number) => {
+      dispatch(todosActions.toggleCompleted(id));
+    },
+    [dispatch]
   );
 
-  const dataSource = useMemo(() => {
-    const safeTodos = todos || [];
+  const onEditTodo = useCallback((todo: Todo) => {
+    dispatch(todosActions.openTodoModal(todo));
+  }, []);
 
-    const filteredTodos = showCompleted
+  const onDeleteHandle = useCallback(
+    async (id: number): Promise<void> => {
+      const isDelete = await onOpenModal();
+
+      if (isDelete) {
+        dispatch(deleteTodoById(id));
+      }
+    },
+    [onOpenModal, dispatch]
+  );
+
+  const filteredTodos = useMemo(() => {
+    const safeTodos = todos || [];
+    return showCompleted
       ? safeTodos.filter((todoItem) => todoItem.completed === true)
       : safeTodos;
+  }, [todos, showCompleted]);
 
+  const dataSource = useMemo(() => {
     return filteredTodos.map((todoItem) => ({
       ordering: (
         <ActiveLine isActive={todoItem.completed}>{todoItem.id}</ActiveLine>
@@ -121,7 +108,39 @@ export function useGetTodosTableData(todos?: Todo[]) {
         </ActiveLine>
       ),
     }));
-  }, [showCompleted, todos, isPending]);
+  }, [
+    filteredTodos,
+    onChangeCompleteTodo,
+    isPending,
+    onEditTodo,
+    onDeleteHandle,
+  ]);
+
+  const tableColumns = useMemo(
+    () => [
+      { title: '#ID', dataIndex: 'ordering', width: 80 },
+      { title: 'Название', dataIndex: 'title' },
+      {
+        title: (
+          <Button
+            onClick={onToggleComplete}
+            theme={ButtonTheme.Clear}
+            className={clsx(
+              styles.completedButton,
+              showCompleted && styles.completedButtonActive
+            )}
+          >
+            Выполнен
+          </Button>
+        ),
+        dataIndex: 'completed',
+        width: 150,
+      },
+      { dataIndex: 'edit', width: 150 },
+      { dataIndex: 'delete', width: 80 },
+    ],
+    [onToggleComplete, showCompleted]
+  );
 
   useEffect(() => {
     navigate(showCompleted ? '?completed=true' : '?', { replace: true });

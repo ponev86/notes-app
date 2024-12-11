@@ -1,4 +1,4 @@
-import { Children, FC, ReactNode } from 'react';
+import { Children, FC, memo, ReactNode } from 'react';
 
 import { getCellData } from './table.utils';
 
@@ -24,7 +24,7 @@ export interface ITableProps {
   skeletonClassName?: string;
 }
 
-const Table: FC<ITableProps> = (props) => {
+export const Table: FC<ITableProps> = memo((props) => {
   const { dataSource, columns, isLoading, skeletonCount, skeletonClassName } =
     props;
 
@@ -74,6 +74,4 @@ const Table: FC<ITableProps> = (props) => {
       </tbody>
     </table>
   );
-};
-
-export default Table;
+});

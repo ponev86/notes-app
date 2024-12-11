@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Todo } from '../model/types/todos-schema';
-import Table from 'shared/ui/table/table';
+import { Table } from 'shared/ui/table/table';
 
 import styles from './todos.module.scss';
 import { useGetTodosTableData } from '../lib/hooks/use-get-todos-table-data';

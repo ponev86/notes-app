@@ -1,0 +1,11 @@
+.label {
+  color: var(--black-color);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &Disabled {
+    color: var(--light-gray-color);
+  }
+}

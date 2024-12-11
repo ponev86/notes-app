@@ -1,0 +1,10 @@
+.mainHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.error {
+  color: var(--red-light);
+  margin-bottom: 10px;
+}

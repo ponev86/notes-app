@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, PropsWithChildren } from 'react';
+import { FC, memo, PropsWithChildren } from 'react';
 import styles from './active-line.module.scss';
 
 interface ActiveLineProps extends PropsWithChildren {
@@ -7,7 +7,7 @@ interface ActiveLineProps extends PropsWithChildren {
   className?: string;
 }
 
-export const ActiveLine: FC<ActiveLineProps> = (props) => {
+export const ActiveLine: FC<ActiveLineProps> = memo((props) => {
   const { isActive, className, children } = props;
 
   return (
@@ -17,4 +17,4 @@ export const ActiveLine: FC<ActiveLineProps> = (props) => {
       {children}
     </div>
   );
-};
+});

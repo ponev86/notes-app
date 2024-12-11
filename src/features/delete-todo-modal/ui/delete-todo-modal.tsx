@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import styles from './delete-todo-modal.module.scss';
 import Modal from 'shared/ui/modal/modal';
 import { Button, ButtonTheme } from 'shared/ui/button/button';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 export interface IDeleteTodoModalProps {
   isOpened: boolean;
@@ -11,7 +11,7 @@ export interface IDeleteTodoModalProps {
   onCancel: VoidFunction;
 }
 
-export const DeleteTodoModal: FC<IDeleteTodoModalProps> = (props) => {
+export const DeleteTodoModal: FC<IDeleteTodoModalProps> = memo((props) => {
   const { isOpened, onCancel, onConfirm } = props;
 
   return (
@@ -35,4 +35,4 @@ export const DeleteTodoModal: FC<IDeleteTodoModalProps> = (props) => {
       </div>
     </Modal>
   );
-};
+});

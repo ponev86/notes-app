@@ -1,0 +1,15 @@
+.link {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.primary {
+  color: var(--primary-link-color);
+}
+
+.secondary {
+  color: var(--secondary-link-color);
+}

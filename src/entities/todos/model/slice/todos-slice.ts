@@ -7,7 +7,8 @@ import { fetchTodos } from '../services/fetch-todos';
 const initialState: TodosSchema = {
   isLoading: false,
   isPending: false,
-  isShowRemoveModal: false,
+  todosModal: null,
+  data: [],
 };
 
 export const todosSlice = createSlice({
@@ -15,23 +16,31 @@ export const todosSlice = createSlice({
   initialState,
   reducers: {
     toggleCompleted: (state, action: PayloadAction<number>) => {
-      state.data = state.data?.map((item) =>
+      state.data = state.data.map((item) =>
         item.id === action.payload
           ? { ...item, completed: !item.completed }
           : item
       );
     },
-    showRemoveModal: (state) => {
-      state.isShowRemoveModal = true;
-    },
-    hideRemoveModal: (state) => {
-      state.isShowRemoveModal = false;
-    },
     deleteTodo: (state, action: PayloadAction<number>) => {
-      state.data = state.data?.filter((item) => item.id !== action.payload);
+      state.data = state.data.filter((item) => item.id !== action.payload);
     },
     setIsPending: (state, action: PayloadAction<boolean>) => {
       state.isPending = action.payload;
+    },
+    openTodoModal(state, action: PayloadAction<Todo>) {
+      state.todosModal = action.payload;
+    },
+    closeTodoModal(state) {
+      state.todosModal = null;
+    },
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.data = [action.payload, ...state.data];
+    },
+    updateTodo: (state, action: PayloadAction<Todo>) => {
+      state.data = state.data.map((item) =>
+        item.id === action.payload.id ? action.payload : item
+      );
     },
   },
   extraReducers: (builder) => {

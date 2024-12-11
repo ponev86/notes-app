@@ -4,7 +4,7 @@ import { API_URL } from 'shared/constants/api';
 const agent = axios.create({
   baseURL: API_URL,
   headers: {
-    'content-type': 'application/json',
+    'Content-Type': 'application/json',
   },
 });
 
@@ -19,25 +19,6 @@ agent.interceptors.response.use(
       window.console.error(error.toString());
     }
 
-    return Promise.reject(error);
-  }
-);
-
-agent.interceptors.request.use(
-  (config) => {
-    const updConfig = { ...config };
-
-    if (
-      updConfig.url?.length &&
-      !updConfig.url.includes('?') &&
-      updConfig.url[updConfig.url.length - 1] !== '/'
-    ) {
-      updConfig.url += '/';
-    }
-
-    return updConfig;
-  },
-  (error) => {
     return Promise.reject(error);
   }
 );
