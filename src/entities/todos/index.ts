@@ -6,7 +6,6 @@ import { getTodosError } from './model/selectors/get-todos-error';
 import { getTodosIsLoading } from './model/selectors/get-todos-is-loading';
 import { getTodosIsPending } from './model/selectors/get-todos-is-pending';
 import { getTodosModal } from './model/selectors/get-todos-modal';
-import { getTodosViewRemoveModal } from './model/selectors/get-todos-view-remove-modal';
 import { fetchTodos } from './model/services/fetch-todos';
 import { todosReducer } from './model/slice/todos-slice';
 import type { TodosSchema } from './model/types/todos-schema';
@@ -21,7 +20,6 @@ export {
   getTodosError,
   getTodosData,
   fetchTodos,
-  getTodosViewRemoveModal,
   deleteTodoById,
   createTodo,
   getTodosModal,

@@ -8,7 +8,6 @@ import { DeleteTodoModal } from 'features/delete-todo-modal';
 
 interface TodosProps {
   isLoading: boolean;
-  isShowRemoveModal: boolean;
   todos?: Todo[];
 }
 

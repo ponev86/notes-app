@@ -3,7 +3,6 @@ import {
   getTodosData,
   getTodosError,
   getTodosIsLoading,
-  getTodosViewRemoveModal,
   Todos,
 } from 'entities/todos';
 
@@ -21,7 +20,6 @@ const MainPage = () => {
   const isLoading = useAppSelector(getTodosIsLoading);
   const error = useAppSelector(getTodosError);
   const todos = useAppSelector(getTodosData);
-  const isShowRemoveModal = useAppSelector(getTodosViewRemoveModal);
 
   useEffect(() => {
     if (todos.length) return;
@@ -37,11 +35,7 @@ const MainPage = () => {
 
       {error && <p className={styles.error}>Ошибка: {error}</p>}
 
-      <Todos
-        isLoading={isLoading}
-        todos={todos}
-        isShowRemoveModal={isShowRemoveModal}
-      />
+      <Todos isLoading={isLoading} todos={todos} />
 
       <EditTodoModal />
     </>
