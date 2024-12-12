@@ -9,6 +9,7 @@ body {
 .content {
   display: flex;
   max-width: 1200px;
+  min-height: calc(100vh - var(--header-height));
   margin: 0 auto;
 }
 

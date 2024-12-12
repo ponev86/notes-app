@@ -10,6 +10,9 @@ import { todosActions } from 'entities/todos/model/slice/todos-slice';
 import useConfirmationModal from 'shared/hooks/use-confirmation-modal';
 import { deleteTodoById, getTodosIsPending } from 'entities/todos';
 import { useAppSelector } from 'shared/hooks/use-app-selector';
+import { AppLink, AppLinkTheme } from 'shared/ui/app-link/app-link';
+import { RoutePath } from 'shared/config/route-config';
+import { generateAlias } from 'shared/utils/common';
 
 export function useGetTodosTableData(todos?: Todo[]) {
   const dispatch = useAppDispatch();
@@ -67,12 +70,19 @@ export function useGetTodosTableData(todos?: Todo[]) {
   }, [todos, showCompleted]);
 
   const dataSource = useMemo(() => {
-    return filteredTodos.map((todoItem) => ({
+    return filteredTodos.map((todoItem, index) => ({
       ordering: (
-        <ActiveLine isActive={todoItem.completed}>{todoItem.id}</ActiveLine>
+        <ActiveLine isActive={todoItem.completed}>{index + 1}</ActiveLine>
       ),
       title: (
-        <ActiveLine isActive={todoItem.completed}>{todoItem.todo}</ActiveLine>
+        <ActiveLine isActive={todoItem.completed}>
+          <AppLink
+            to={`${RoutePath.todo_details}${generateAlias(todoItem.id, todoItem.todo)}`}
+            theme={AppLinkTheme.Secondary}
+          >
+            {todoItem.todo}
+          </AppLink>
+        </ActiveLine>
       ),
       completed: (
         <ActiveLine isActive={todoItem.completed}>

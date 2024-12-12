@@ -25,7 +25,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     element: <MainPage />,
   },
   [AppRoutes.TODO_DETAILS]: {
-    path: `${RoutePath.todo_details}:id`,
+    path: `${RoutePath.todo_details}:alias`,
     element: <TodoPage />,
   },
   [AppRoutes.TODO_CREATE]: {
