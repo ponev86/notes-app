@@ -1,27 +1,34 @@
-# React + TypeScript + Vite
+# Приложение о заметках NOTES APP
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![image](https://d33wubrfki0l68.cloudfront.net/67597f544982c40008f7e218/screenshot_2024-12-11-12-03-20-0000.webp)
 
-Currently, two official plugins are available:
+Ccылка не деплой [https://notes-app-ponev86.netlify.app](https://notes-app-ponev86.netlify.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Описание
 
-## Expanding the ESLint configuration
+Приложение носит демонстрационный характер. Используемые архитектура, библиотеки, инструменты и методы выбраны специально.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Установка
 
-- Configure the top-level `parserOptions` property like this:
+- В локальной папке вызываем `git clone git@github.com:ponev86/notes-app.git`
+- Заходим в папку `cd notes-app`
+- `npm install` -> `npm run dev` - для запуска, `npm run build` - для сборки проекта
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+### Стек
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- React
+- React Router Dom
+- TypeScript
+- Redux Toolkit
+- HTML, CSS Modules, Scss
+- Axios
+- React Hook Form
+- Yup
+- Vite
+
+#### Что можно было улучшить?
+
+- REST API
+- Добавить мобильную версию
+- Оптимизировать код
+- Ваши пожелания :)
