@@ -11,7 +11,9 @@ export const editTodo =
 
       // TODO: условие для успешного изменения добавленных вручную записей
       if (id < 255) {
-        const { data } = await agent.put<Todo>(`/todos/${id}`, todo);
+        const { data } = await agent.put<Todo>(`/todos/${id}`, {
+          todo: todo.todo,
+        });
         dispatch(todosSlice.actions.updateTodo(data));
       } else {
         dispatch(todosSlice.actions.updateTodo({ id, ...todo }));
